@@ -1,0 +1,25 @@
+maximize = true
+macos-titlebar-style = transparent
+window-padding-x = 10
+window-padding-y = 10
+window-padding-balance = true
+
+font-thicken
+font-family = FiraCode Nerd Font Mono
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig
+font-size = 15
+font-style-bold = false
+font-style-italic = false
+font-style-bold-italic = false
+
+background-opacity = 0.85
+background-opacity-cells = true
+background-blur = 3
+unfocused-split-opacity = 0.5
+
+shell-integration-features = no-cursor
+cursor-style = block
+cursor-style-blink = false
+mouse-hide-while-typing
