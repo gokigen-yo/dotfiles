@@ -1,0 +1,44 @@
+tap "homebrew/bundle"
+
+cask "arc"
+cask "font-fira-code-nerd-font" # font for terminal
+cask "ghostty"
+cask "hiddenbar"
+cask "karabiner-elements"
+cask "raycast"
+cask "the-unarchiver"
+cask "visual-studio-code"
+
+{{ if .is_personal_machine -}}
+cask "musescore"
+cask "unity-hub"
+cask "zoom"
+{{- end }}
+
+brew "atuin"
+brew "bat"
+brew "chezmoi"
+brew "eza"
+brew "fd"
+brew "fzf"
+brew "lazygit"
+brew "git"
+brew "git-delta"
+brew "git-interactive-rebase-tool"
+brew "jq"
+brew "neovim"
+brew "mas"
+brew "mise"
+brew "ripgrep"
+brew "starship"
+brew "zoxide"
+brew "zsh-completions"
+brew "zsh-syntax-highlighting"
+
+{{ if .is_personal_machine -}}
+brew "bitwarden-cli"
+brew "ffmpeg"
+brew "gemini-cli"
+{{- end }}
+
+mas "RunCat", id: 1429033973
