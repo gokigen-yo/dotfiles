@@ -1,0 +1,7 @@
+{{- $isPersonalMachine := promptBoolOnce . "isPersonalMachine" "Is this a personal machine?" -}}
+
+[data]
+  is_personal_machine = {{ $isPersonalMachine }}
+
+[edit]
+  command = "nvim"
