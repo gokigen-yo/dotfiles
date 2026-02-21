@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Brewfileが変更されたときだけ処理が走るよう、ファイルのチェックサムを含める
+# {{ include "private_dot_config/brewfile/Brewfile.tmpl" | sha256sum }}
+
 {{ if eq .chezmoi.os "darwin" -}}
 
 BREWFILE="$HOME/.config/brewfile/Brewfile"
