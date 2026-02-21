@@ -1,0 +1,13 @@
+#!/bin/bash
+
+{{ if eq .chezmoi.os "darwin" -}}
+
+BREWFILE="$HOME/.config/brewfile/Brewfile"
+if [[ -f "$BREWFILE" ]]; then
+    echo "Running brew bundle with $BREWFILE..."
+    brew bundle --file="$BREWFILE"
+else
+    echo "WARNING: Brewfile not found at $BREWFILE. Skipping brew bundle."
+fi
+
+{{ end -}}
