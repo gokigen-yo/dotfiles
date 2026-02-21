@@ -1,0 +1,52 @@
+## colors
+autoload -Uz colors; colors
+
+## history
+export HISTFILE=~/.config/zsh/.zsh_history
+export HISTSIZE=100000
+export SAVEHIST=100000
+
+# path
+eval $(/opt/homebrew/bin/brew shellenv)
+eval "$(atuin init zsh --disable-up-arrow)"
+eval "$(mise activate zsh)"
+eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+## setopt
+setopt auto_cd
+setopt auto_param_slash
+setopt auto_pushd
+setopt complete_in_word
+setopt correct
+setopt extended_history
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt hist_reduce_blanks
+setopt hist_verify
+setopt interactive_comments
+setopt list_packed
+setopt magic_equal_subst
+setopt numeric_glob_sort
+setopt pushd_ignore_dups
+setopt share_history
+
+## autocomp
+FPATH=$HOMEBREW_PREFIX/share/zsh-completions:$FPATH
+autoload -U compinit; compinit
+zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' menu select=2
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*:corrections' format $fg[yellow]'%B%d '$fg[red]'(errors: %e)%b'${reset_color}
+zstyle ':completion:*:descriptions' format $fg[yellow]'completing %B%d%b'${reset_color}
+zstyle ':completion:*:messages' format '%d'
+zstyle ':completion:*:options' description 'yes'
+zstyle ':completion:*:rm:*' menu false
+zstyle ':completion:*:warnings' format 'No matches for:'$fg[yellow]' %d'${reset_color}
+zstyle ':completion:messages' format '%d'
+
+source ~/.config/zsh/.zsh.alias

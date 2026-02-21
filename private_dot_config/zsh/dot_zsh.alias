@@ -1,0 +1,8 @@
+alias ls="eza"
+alias la="eza -a"
+alias ll="eza -al"
+alias tree="eza --tree"
+alias mkdir="mkdir -p"
+alias less="less -r"
+alias cat="bat -pP"
+alias grep="rg"
