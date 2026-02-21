@@ -6,15 +6,10 @@ export HISTFILE=~/.config/zsh/.zsh_history
 export HISTSIZE=100000
 export SAVEHIST=100000
 
-# path
-eval $(/opt/homebrew/bin/brew shellenv)
-eval "$(atuin init zsh --disable-up-arrow)"
-eval "$(mise activate zsh)"
-eval "$(starship init zsh)"
-eval "$(zoxide init zsh)"
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# alias
+source ~/.config/zsh/.zsh.alias
 
-## setopt
+# setopt
 setopt auto_cd
 setopt auto_param_slash
 setopt auto_pushd
@@ -32,21 +27,40 @@ setopt numeric_glob_sort
 setopt pushd_ignore_dups
 setopt share_history
 
-## autocomp
-FPATH=$HOMEBREW_PREFIX/share/zsh-completions:$FPATH
-autoload -U compinit; compinit
-zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' list-colors ''
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-zstyle ':completion:*' menu select=2
-zstyle ':completion:*' verbose yes
-zstyle ':completion:*:corrections' format $fg[yellow]'%B%d '$fg[red]'(errors: %e)%b'${reset_color}
-zstyle ':completion:*:descriptions' format $fg[yellow]'completing %B%d%b'${reset_color}
-zstyle ':completion:*:messages' format '%d'
-zstyle ':completion:*:options' description 'yes'
-zstyle ':completion:*:rm:*' menu false
-zstyle ':completion:*:warnings' format 'No matches for:'$fg[yellow]' %d'${reset_color}
-zstyle ':completion:messages' format '%d'
+# homebrew
+if [[ -f /opt/homebrew/bin/brew ]]; then
+  eval $(/opt/homebrew/bin/brew shellenv)
+elif [[ -f /home/linuxbrew/.linuxbrew/bin/brew ]]; then
+  eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+fi
 
-source ~/.config/zsh/.zsh.alias
+function _setup_tools() {
+  eval "$(atuin init zsh --disable-up-arrow)"
+  eval "$(mise activate zsh)"
+  eval "$(starship init zsh)"
+  eval "$(zoxide init zsh)"
+  source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+}
+
+function _setup_completions() {
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+  autoload -U compinit; compinit
+  zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
+  zstyle ':completion:*' group-name ''
+  zstyle ':completion:*' list-colors ''
+  zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+  zstyle ':completion:*' menu select=2
+  zstyle ':completion:*' verbose yes
+  zstyle ':completion:*:corrections' format $fg[yellow]'%B%d '$fg[red]'(errors: %e)%b'${reset_color}
+  zstyle ':completion:*:descriptions' format $fg[yellow]'completing %B%d%b'${reset_color}
+  zstyle ':completion:*:messages' format '%d'
+  zstyle ':completion:*:options' description 'yes'
+  zstyle ':completion:*:rm:*' menu false
+  zstyle ':completion:*:warnings' format 'No matches for:'$fg[yellow]' %d'${reset_color}
+  zstyle ':completion:messages' format '%d'
+}
+
+if (( $+commands[brew] )); then
+  _setup_tools
+  _setup_completions
+fi
