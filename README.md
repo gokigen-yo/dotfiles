@@ -3,5 +3,5 @@
 ## Setup
 
 ```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/gokigen-yo/dotfiles/main/setup.sh)"
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply gokigen-yo
 ```
