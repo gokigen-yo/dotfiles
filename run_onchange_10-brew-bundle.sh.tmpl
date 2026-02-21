@@ -2,15 +2,18 @@
 
 # Brewfileが変更されたときだけ処理が走るよう、ファイルのチェックサムを含める
 # {{ include "private_dot_config/brewfile/Brewfile.tmpl" | sha256sum }}
+# {{ include "private_dot_config/brewfile/Brewfile.macos.tmpl" | sha256sum }}
 
-{{ if eq .chezmoi.os "darwin" -}}
+BREWFILES=(
+    "$HOME/.config/brewfile/Brewfile"
+    "$HOME/.config/brewfile/Brewfile.macos"
+)
 
-BREWFILE="$HOME/.config/brewfile/Brewfile"
-if [[ -f "$BREWFILE" ]]; then
-    echo "Running brew bundle with $BREWFILE..."
-    brew bundle --file="$BREWFILE"
-else
-    echo "WARNING: Brewfile not found at $BREWFILE. Skipping brew bundle."
-fi
-
-{{ end -}}
+for BREWFILE in "${BREWFILES[@]}"; do
+    if [[ -f "$BREWFILE" ]]; then
+        echo "Running brew bundle with $BREWFILE..."
+        brew bundle --file="$BREWFILE"
+    else
+        echo "$BREWFILE is not found. Skipping brew bundle."
+    fi
+done

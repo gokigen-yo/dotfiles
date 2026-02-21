@@ -1,0 +1,18 @@
+cask "arc"
+cask "font-fira-code-nerd-font" # font for terminal
+cask "ghostty"
+cask "hiddenbar"
+cask "karabiner-elements"
+cask "raycast"
+cask "the-unarchiver"
+cask "visual-studio-code"
+
+{{ if .is_personal_machine -}}
+cask "musescore"
+cask "unity-hub"
+cask "zoom"
+{{- end }}
+
+brew "mas"
+
+mas "RunCat", id: 1429033973
