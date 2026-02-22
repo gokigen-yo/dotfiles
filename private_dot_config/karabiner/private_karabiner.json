@@ -48,16 +48,6 @@
                     }
                 ]
             },
-            "devices": [
-                {
-                    "identifiers": {
-                        "is_keyboard": true,
-                        "product_id": 34050,
-                        "vendor_id": 2652
-                    },
-                    "manipulate_caps_lock_led": false
-                }
-            ],
             "name": "Default profile",
             "selected": true,
             "simple_modifications": [
