@@ -1,7 +1,12 @@
 {{- $isPersonalMachine := promptBoolOnce . "isPersonalMachine" "Is this a personal machine?" -}}
+{{- $gitMailAddress := "" -}}
+{{- if $isPersonalMachine -}}
+{{-   $gitMailAddress = promptStringOnce . "gitMailAddress" "Input gokigen-yo's email address." -}}
+{{- end -}}
 
 [data]
   is_personal_machine = {{ $isPersonalMachine }}
+  git_mail_address = {{ $gitMailAddress | quote }}
 
 [edit]
   command = "nvim"

@@ -5,3 +5,7 @@ setup.sh
 .config/brewfile/Brewfile.macos
 .config/karabiner/
 {{ end }}
+
+{{ if not .is_personal_machine }}
+.config/git/config.local
+{{ end }}
