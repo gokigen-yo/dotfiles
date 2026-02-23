@@ -16,4 +16,8 @@ cask "zoom"
 brew "mas"
 
 mas "RunCat", id: 1429033973
+
+{{ if .is_personal_machine -}}
 mas "Day One", id: 1055511498
+{{- end }}
+
