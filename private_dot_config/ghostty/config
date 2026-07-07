@@ -14,6 +14,8 @@ font-style-bold = false
 font-style-italic = false
 font-style-bold-italic = false
 
+theme = dark:TokyoNight,light:TokyoNight Day
+
 background-opacity = 0.85
 background-opacity-cells = true
 background-blur = 3
