@@ -5,4 +5,4 @@ name = "terminal"
 delivery = "system"
 
 [keys]
-prefix = "ctrl+a"
+prefix = "ctrl+q"
